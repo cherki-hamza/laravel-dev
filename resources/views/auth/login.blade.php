@@ -1,6 +1,6 @@
 @extends('layouts.master')
 <head>
-    <link rel="stylesheet" href="{{asset('css/index.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/css/index.css')}}" rel="stylesheet">
 </head>
 @section("content")
   <body>

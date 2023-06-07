@@ -1,7 +1,7 @@
 @extends('layouts.master')
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{asset('css/donner.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/css/donner.css')}}" rel="stylesheet">
 </head>
 @section("content")
     <section id="donner" class="d-flex align-items-center">
@@ -19,13 +19,13 @@
 
           <h2>Si vous avez des questions concernant votre éligibilité,<br>
              veuillez nous appeler au +212 537 77 33 24 </h2>
-    
+
           <a href="#about" class="btn-get-started scrollto"> Learn more </a>
           <a href="{{ route('register') }}" class="btn-get-started1 scrollto">Donner </a>
         </div>
 
         <div class="right">
-            <img class="image" src="{{asset('../img/donner.jpg')}}" alt="Image">
+            <img class="image" src="{{asset('public/img/donner.jpg')}}" alt="Image">
         </div>
       </section>
 @endsection

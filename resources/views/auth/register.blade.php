@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 <head>
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('public/css/index.css') }}" rel="stylesheet">
 </head>
 @section('content')
 
@@ -110,7 +110,7 @@
                         <!-- <div class="forget">
                             <label for=""><input type="checkbox">Remember Me </label>
                             <label> <a href="#">Forget Password</a></label>
-                          
+
                         </div> -->
                         <button>Registrer</button>
                         <div class="register">

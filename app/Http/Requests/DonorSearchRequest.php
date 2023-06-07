@@ -24,8 +24,8 @@ class DonorSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'BloodGroup' => ['required', 'string'],
-            'city' => ['nullable', 'string'],
+            'blood_group_id' => ['required', 'string'],
+            'city_id' => ['nullable', 'string'],
         ];
     }
 }

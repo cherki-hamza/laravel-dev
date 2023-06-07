@@ -8,11 +8,11 @@
   <title>DONORNATION</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-  <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ asset('public/js/app.js') }}" defer></script>
 
   <!-- Favicons -->
-  <link href="{{asset('img/logoyy.png')}}" rel="icon">
-  <link href="{{asset('img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+  <link href="{{asset('public/img/logoyy.png')}}" rel="icon">
+  <link href="{{asset('public/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -29,6 +29,8 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('public/css/style.css') }}" rel="stylesheet">
+
+  @yield('styles')
 
   <!-- =======================================================
   * Template Name: Medilab
@@ -61,8 +63,8 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
       <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="{{route('home')}}" class="logo me-auto"><img src="{{ asset('img/logoyy.png')}}" alt="" class="img-fluid"></a>
-      <h1 class="logo me-auto"><a href="index.html">DONORNATION</a></h1>
+      <a href="{{route('home')}}" class="logo me-auto"><img src="{{ asset('public/img/logoyy.png')}}" alt="" class="img-fluid"></a>
+      <h1 class="logo me-auto"><a href="{{route('home')}}">DONORNATION</a></h1>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>

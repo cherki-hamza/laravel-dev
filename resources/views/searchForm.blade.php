@@ -9,27 +9,57 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-10 rounded-3 shadow p-5 position-relative bg-white searchBox">
-                    <h3 class="text-center mb-4">Trouver des donneurs de sang près de chez vous</h3>
-                    <form id="donorsSearchForm" method="GET" action="{{ route('donorsSearch') }}"
+                    <h3 class="text-center mb-4">Trouver des donneurs de sang près de chez vous dev 00 ..</h3>
+                    <form id="donorsSearchForm" method="POST" action="{{ route('donorsSearch') }}"
                         class="d-flex flex-column flex-xl-row gap-3" novalidate>
+
                         @csrf
+
                         <div class="w-100">
-                            <select name="blood_group_id" id="bloodGroup" class="form-select form-select-lg" required>
-                                <option selected hidden style="display:none" value=""> -- Type de sang --</option>
-                                @foreach ($bloodGroups as $bloodGroup)
-                                    <option value="{{ $bloodGroup['id'] }}">{{ $bloodGroup['BloodGroup'] }} </option>
-                                @endforeach
+                            <select name="blood_group_id" id="bloodGroup" class="form-select form-select-lg @error('blood_group_id') is-invalid text-danger @enderror" required>
+                                @if (Route::is('donorsSearch') && $searchedBloodGroup !== null)
+
+                                   <option selected  value="{{ $searchedBloodGroup->id }}">{{ $searchedBloodGroup->BloodGroup }}</option>
+                                    @foreach ($bloodGroups as $bloodGroup)
+                                        <option value="{{ $bloodGroup['id'] }}">{{ $bloodGroup['BloodGroup'] }} </option>
+                                    @endforeach
+
+                                @else
+
+                                  <option selected hidden style="display:none" value=""> -- Type de sang --</option>
+                                    @foreach ($bloodGroups as $bloodGroup)
+                                        <option value="{{ $bloodGroup['id'] }}">{{ $bloodGroup['BloodGroup'] }} </option>
+                                    @endforeach
+
+                                @endif
+
                             </select>
-                            <div class="invalid-feedback">
-                                Ville
+                            @error('blood_group_id')
+                            <div class="invalid-feedback my-2">
+                                 {{$message}}
                             </div>
+                            @enderror
                         </div>
+
                         <div class="w-100">
                             <select name="city_id" id="villeSelect" class="form-select form-select-lg">
-                                <option selected hidden style="display:none" value="">--Choisir une ville--</option>
-                                @foreach ($cities as $city)
-                                    <option value="{{ $city['id'] }}">{{ $city['name'] }} </option>
-                                @endforeach
+                                 @if (Route::is('donorsSearch') && $searchedCity !== null)
+
+                                    <option selected  value="{{ $searchedCity->id }}">{{ $searchedCity->name }}</option>
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city['id'] }}">{{ $city['name'] }} </option>
+                                    @endforeach
+
+                                @else
+
+                                   <option selected hidden style="display:none" value="">--Choisir une ville--</option>
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city['id'] }}">{{ $city['name'] }} </option>
+                                    @endforeach
+
+                                @endif
+
+
                             </select>
                             <div class="invalid-feedback">
                                 ddddddddddddddddddddddd

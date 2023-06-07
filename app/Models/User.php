@@ -40,7 +40,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast.  , 'blood_group_id', 'id'
      *
      * @var array<string, string>
      */
@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function bloodGroup()
     {
-        return $this->belongsTo(BloodGroup::class, 'blood_group_id', 'id');
+        return $this->belongsTo(BloodGroup::class);
     }
 
     public function City()
@@ -86,24 +86,71 @@ class User extends Authenticatable
             ->get();
     }
 
+
+    public static function otherBloodGroupsDonorsOf($bloodGroupId)
+    {
+        switch ($bloodGroupId) {
+            case 1:
+                return [2, 5, 6];
+                break;
+            case 2:
+                return [6];
+                break;
+            case 3:
+                return [3, 5, 6];
+                break;
+            case 4:
+                return [6];
+                break;
+            case 5:
+                return [6];
+                break;
+            case 6:
+                return [];
+                break;
+            case 7:
+                return [1, 2, 3, 4, 5, 6, 8]; // A+ , A- , B+ ,  B- , O+ , O-
+                break;
+            case 8:
+                return [2, 4, 6];
+                break;
+            default:
+                return [];
+                break;
+        }
+    }
+
     public static function getOtherDonorsCanDonateTo($bloodGroupId, $city = null)
     {
+
+
         $readyDonors = self::getReadyDonors();
 
         $otherBloodGroups = self::otherBloodGroupsDonorsOf($bloodGroupId);
 
+
+        /* dd($otherBloodGroups);
+        exit(); */
+
         if (!empty($otherBloodGroups)) {
-            $query = self::with('bloodGroup')
-                ->whereIn('blood_group_id', $otherBloodGroups)
+            $query = User::with('bloodGroup')
+                ->whereIn('blood_group_id', $otherBloodGroups) // 1 A+  1  == 2 5 6
+                //->paginate();
                 ->whereNotIn('id', $readyDonors->pluck('id')->toArray());
 
-            if ($city) {
-                $query->where('city_id', $city);
-            }
 
-            return $query->inRandomOrder()
+
+            /* if ($city) {
+                $query->where('city_id', $city);
+            } */
+
+            /* dd($query->get());
+            exit(); */
+
+            /* return $query->inRandomOrder()
                 ->paginate(10, ['*'], 'other-donors')
-                ->appends(request()->except('other-donors'));
+                ->appends(request()->except('other-donors')); */
+            return $query->inRandomOrder()->paginate(10);
         }
 
         return [];
